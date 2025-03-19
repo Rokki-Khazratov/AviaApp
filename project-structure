@@ -1,13 +1,25 @@
 aviation-management-app/
 ├── src/
 │   ├── screens/
+│   │   ├── onboarding/
+│   │   │   └── OnboardingScreen.tsx
 │   │   ├── auth/
-│   │   ├── flights/
-│   │   │   ├── online/
-│   │   │   └── offline/
-│   │   ├── crew/
-│   │   ├── salary/
+│   │   │   └── LoginScreen.tsx
+│   │   ├── home/
+│   │   │   └── HomeScreen.tsx
+│   │   ├── profile/
+│   │   │   └── ProfileScreen.tsx
+│   │   ├── finance/
+│   │   │   └── FinanceScreen.tsx
+│   │   ├── schedule/
+│   │   │   ├── ScheduleScreen.tsx
+│   │   │   └── FlightDetailScreen.tsx
+│   │   ├── employee/
+│   │   │   └── EmployeeDetailScreen.tsx
+│   │   ├── history/
+│   │   │   └── HistoryScreen.tsx
 │   │   └── settings/
+│   │   └── SettingsScreen.tsx
 │   ├── components/
 │   │   ├── common/
 │   │   └── specific/
