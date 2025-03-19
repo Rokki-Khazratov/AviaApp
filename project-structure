@@ -1,0 +1,27 @@
+aviation-management-app/
+├── src/
+│   ├── screens/
+│   │   ├── auth/
+│   │   ├── flights/
+│   │   │   ├── online/
+│   │   │   └── offline/
+│   │   ├── crew/
+│   │   ├── salary/
+│   │   └── settings/
+│   ├── components/
+│   │   ├── common/
+│   │   └── specific/
+│   ├── navigation/
+│   ├── services/
+│   │   ├── api/
+│   │   ├── storage/
+│   │   │   └── offline-storage/
+│   │   └── notifications/
+│   ├── utils/
+│   ├── hooks/
+│   ├── constants/
+│   └── i18n/
+│       ├── ru/
+│       └── uz/
+├── assets/
+└── App.js 
