@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { IMAGES } from '../../constants/images';
 
 const ProfileScreen = ({ navigation }) => {
   const menuItems = [
@@ -21,9 +22,10 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View
-          style={[styles.avatar, { backgroundColor: '#f5f5f5' }]}
-        />
+        <View style={styles.imageContainer}>
+          {/* Добавим позже, когда изображение будет готово */}
+          {/* <Image source={IMAGES.avatarPlaceholder} style={styles.avatar} /> */}
+        </View>
         <Text style={styles.name}>Иван Петров</Text>
         <Text style={styles.role}>Пилот</Text>
       </View>
@@ -52,6 +54,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
     alignItems: 'center',
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 16,
   },
   avatar: {
     width: 100,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/common/BackButton';
 
 type FlightDetailScreenProps = {
   navigation: any;
@@ -29,6 +30,7 @@ const FlightDetailScreen = ({ route }: FlightDetailScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton />
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.flightNumber}>{flightDetails.number}</Text>

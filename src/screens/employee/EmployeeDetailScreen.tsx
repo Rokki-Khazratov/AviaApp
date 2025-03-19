@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { IMAGES } from '../../constants/images';
 
 type EmployeeDetailScreenProps = {
   navigation: any;
@@ -38,10 +39,10 @@ const EmployeeDetailScreen = ({ route }: EmployeeDetailScreenProps) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Image
-            style={styles.avatar}
-            source={require('../../../assets/images/avatar-placeholder.png')}
-          />
+          <View style={styles.avatarContainer}>
+            {/* Добавим позже, когда изображение будет готово */}
+            {/* <Image source={IMAGES.avatarPlaceholder} style={styles.avatar} /> */}
+          </View>
           <Text style={styles.name}>{employeeData.name}</Text>
           <Text style={styles.role}>{employeeData.role}</Text>
         </View>
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
   },
-  avatar: {
+  avatarContainer: {
     width: 120,
     height: 120,
     borderRadius: 60,

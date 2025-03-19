@@ -46,7 +46,7 @@ const SettingsScreen = () => {
           >
             <Text style={styles.settingLabel}>Язык</Text>
             <Text style={styles.languageValue}>
-              {language === 'ru' ? 'Русский' : 'O'zbek'}
+              {language === 'ru' ? 'Русский' : 'Ўзбек'}
             </Text>
           </TouchableOpacity>
         </View>

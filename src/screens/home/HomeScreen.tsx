@@ -1,36 +1,83 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationProps } from '../../types/navigation';
 
-const HomeScreen = () => {
+type HomeScreenProps = {
+  navigation: NavigationProps;
+};
+
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
+  const getFormattedDate = () => {
+    const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+    const date = new Date();
+    return `${date.toLocaleDateString()}, ${days[date.getDay()]}`;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
-          <Text style={styles.greeting}>Добрый день, Пилот</Text>
-          <Text style={styles.date}>{new Date().toLocaleDateString()}</Text>
+          <Text style={styles.greeting}>Добрый день, Анна Смирнова</Text>
+          <Text style={styles.role}>Пилот</Text>
+          <Text style={styles.date}>{getFormattedDate()}</Text>
         </View>
 
         <View style={styles.upcomingFlight}>
           <Text style={styles.sectionTitle}>Ближайший рейс</Text>
-          <View style={styles.flightCard}>
-            <Text style={styles.flightNumber}>TAS-MSK 234</Text>
+          <TouchableOpacity 
+            style={styles.flightCard}
+            onPress={() => navigation.navigate('FlightDetail', { flightId: '1' })}
+          >
+            <View style={styles.flightHeader}>
+              <View style={styles.flightIcon} />
+              <Text style={styles.flightNumber}>HY 234</Text>
+            </View>
             <Text style={styles.flightTime}>14:30 - 17:45</Text>
-            <Text style={styles.flightStatus}>До вылета: 2ч 30м</Text>
-          </View>
+            <View style={styles.flightInfoRow}>
+              <Text style={styles.flightStatus}>До вылета: 2ч 30м</Text>
+              <Text style={styles.gate}>Выход: A12</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.stats}>
           <Text style={styles.sectionTitle}>Статистика за месяц</Text>
           <View style={styles.statsGrid}>
-            <View style={styles.statCard}>
+            <TouchableOpacity 
+              style={styles.statCard}
+              onPress={() => navigation.navigate('History')}
+            >
               <Text style={styles.statNumber}>23</Text>
               <Text style={styles.statLabel}>Рейсов</Text>
-            </View>
-            <View style={styles.statCard}>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.statCard}
+              onPress={() => navigation.navigate('History')}
+            >
               <Text style={styles.statNumber}>87ч</Text>
               <Text style={styles.statLabel}>Налет</Text>
-            </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.quickActions}>
+          <Text style={styles.sectionTitle}>Быстрые действия</Text>
+          <View style={styles.actionsGrid}>
+            <TouchableOpacity 
+              style={styles.actionCard}
+              onPress={() => navigation.navigate('Schedule')}
+            >
+              <Text style={styles.actionTitle}>Расписание</Text>
+              <Text style={styles.actionSubtitle}>На этот месяц</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.actionCard}
+              onPress={() => navigation.navigate('Finance')}
+            >
+              <Text style={styles.actionTitle}>Финансы</Text>
+              <Text style={styles.actionSubtitle}>Зарплата и бонусы</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -54,17 +101,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#1a1a1a',
+    marginBottom: 4,
   },
-  date: {
+  role: {
     fontSize: 16,
     color: '#666',
-    marginTop: 4,
+    marginBottom: 4,
+  },
+  date: {
+    fontSize: 14,
+    color: '#666',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: 12,
     color: '#1a1a1a',
+  },
+  seeAllButton: {
+    fontSize: 14,
+    color: '#007AFF',
   },
   upcomingFlight: {
     padding: 20,
@@ -79,19 +140,59 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
   },
+  flightHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  flightIcon: {
+    width: 24,
+    height: 24,
+    backgroundColor: '#007AFF',
+    borderRadius: 12,
+    marginRight: 8,
+  },
   flightNumber: {
     fontSize: 18,
     fontWeight: '600',
+    color: '#1a1a1a',
     marginBottom: 8,
   },
   flightTime: {
     fontSize: 16,
-    color: '#666',
-    marginBottom: 4,
+    color: '#1a1a1a',
+    marginBottom: 8,
+  },
+  flightInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
   },
   flightStatus: {
     fontSize: 14,
     color: '#007AFF',
+  },
+  gate: {
+    fontSize: 14,
+    color: '#666',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#f0f0f0',
+    marginVertical: 12,
+  },
+  crewPreview: {
+    marginTop: 4,
+  },
+  crewTitle: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 4,
+  },
+  crewMember: {
+    fontSize: 14,
+    color: '#1a1a1a',
+    marginBottom: 2,
   },
   stats: {
     padding: 20,
@@ -114,6 +215,35 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   statLabel: {
+    fontSize: 14,
+    color: '#666',
+  },
+  quickActions: {
+    padding: 20,
+  },
+  actionsGrid: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 12,
+  },
+  actionCard: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  actionTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: 4,
+  },
+  actionSubtitle: {
     fontSize: 14,
     color: '#666',
   },
