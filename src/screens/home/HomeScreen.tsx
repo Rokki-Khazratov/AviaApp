@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
-          <Text style={styles.greeting}>Добрый день, Анна Смирнова</Text>
+          <Text style={styles.greeting}>Добрый день, Шамшодбек Хазратов</Text>
           <Text style={styles.role}>Пилот</Text>
           <Text style={styles.date}>{getFormattedDate()}</Text>
         </View>
@@ -32,6 +32,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
             <View style={styles.flightHeader}>
               <View style={styles.flightIcon} />
               <Text style={styles.flightNumber}>HY 234</Text>
+            </View>
+            <View style={styles.routeContainer}>
+              <Text style={styles.airport}>TAS</Text>
+              <View style={styles.routeLine}>
+                <Text style={styles.routeArrow}>→</Text>
+              </View>
+              <Text style={styles.airport}>SVO</Text>
             </View>
             <Text style={styles.flightTime}>14:30 - 17:45</Text>
             <View style={styles.flightInfoRow}>
@@ -246,6 +253,25 @@ const styles = StyleSheet.create({
   actionSubtitle: {
     fontSize: 14,
     color: '#666',
+  },
+  routeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  airport: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  routeLine: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  routeArrow: {
+    fontSize: 18,
+    color: '#007AFF',
   },
 });
 

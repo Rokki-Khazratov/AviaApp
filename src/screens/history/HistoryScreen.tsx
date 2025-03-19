@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/common/BackButton';
+import type { ScreenProps } from '../../types/navigation';
 
-const HistoryScreen = ({ navigation }) => {
+const HistoryScreen = ({ navigation }: ScreenProps) => {
   const flightHistory = [
     {
       id: '1',
@@ -41,15 +43,18 @@ const HistoryScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>История полетов</Text>
-      </View>
-      <FlatList
-        data={flightHistory}
-        renderItem={renderFlightItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.listContent}
-      />
+      <BackButton />
+      <ScrollView>
+        <View style={styles.header}>
+          <Text style={styles.title}>История полетов</Text>
+        </View>
+        <FlatList
+          data={flightHistory}
+          renderItem={renderFlightItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.listContent}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

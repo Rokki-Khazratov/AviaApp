@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/common/BackButton';
+import type { ScreenProps } from '../../types/navigation';
 
-const FinanceScreen = () => {
+const FinanceScreen = ({ navigation }: ScreenProps) => {
   const financeData = {
     currentMonth: {
       salary: 250000,
@@ -27,6 +29,7 @@ const FinanceScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton />
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.title}>Финансы</Text>

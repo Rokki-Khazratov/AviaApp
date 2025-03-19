@@ -1,4 +1,4 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -10,4 +10,8 @@ export type RootStackParamList = {
   Settings: undefined;
 };
 
-export type NavigationProps = NativeStackNavigationProp<RootStackParamList>; 
+export type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
+export type ScreenProps = {
+  navigation: NavigationProps;
+}; 

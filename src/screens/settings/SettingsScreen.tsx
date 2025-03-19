@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/common/BackButton';
 
 const SettingsScreen = () => {
   const [notifications, setNotifications] = useState(true);
@@ -13,6 +14,7 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton />
       <View style={styles.header}>
         <Text style={styles.title}>Настройки</Text>
       </View>

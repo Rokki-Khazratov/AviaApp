@@ -13,19 +13,55 @@ type FlightDetailScreenProps = {
 };
 
 const FlightDetailScreen = ({ route }: FlightDetailScreenProps) => {
-  // В реальном приложении данные будут загружаться по ID
   const flightDetails = {
-    number: 'TAS-MSK 234',
+    number: 'HY 234',
+    from: {
+      code: 'TAS',
+      city: 'Ташкент',
+      terminal: 'T2',
+    },
+    to: {
+      code: 'SVO',
+      city: 'Москва',
+      terminal: 'C',
+    },
     departure: '14:30',
     arrival: '17:45',
     date: '2024-03-20',
     status: 'Предстоит',
-    aircraft: 'Boeing 737-800',
+    aircraft: {
+      model: 'Boeing 737-800',
+      registration: 'UK32021',
+      age: '4.5 года',
+    },
     gate: 'A12',
+    baggage: 'Лента 3',
     crew: [
-      { name: 'Петр Иванов', role: 'Командир' },
-      { name: 'Анна Смирнова', role: 'Второй пилот' },
+      { 
+        name: 'Петр Иванов',
+        role: 'Командир',
+        experience: '12 лет',
+        flightHours: '8500 часов'
+      },
+      { 
+        name: 'Анна Смирнова',
+        role: 'Второй пилот',
+        experience: '5 лет',
+        flightHours: '3200 часов'
+      },
     ],
+    weather: {
+      departure: {
+        temp: '+18°C',
+        conditions: 'Ясно',
+        wind: '5 м/с'
+      },
+      arrival: {
+        temp: '+12°C',
+        conditions: 'Облачно',
+        wind: '8 м/с'
+      }
+    }
   };
 
   return (
@@ -34,6 +70,19 @@ const FlightDetailScreen = ({ route }: FlightDetailScreenProps) => {
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.flightNumber}>{flightDetails.number}</Text>
+          <View style={styles.routeContainer}>
+            <View style={styles.airportInfo}>
+              <Text style={styles.airportCode}>{flightDetails.from.code}</Text>
+              <Text style={styles.airportCity}>{flightDetails.from.city}</Text>
+            </View>
+            <View style={styles.routeLine}>
+              <Text style={styles.routeArrow}>→</Text>
+            </View>
+            <View style={styles.airportInfo}>
+              <Text style={styles.airportCode}>{flightDetails.to.code}</Text>
+              <Text style={styles.airportCity}>{flightDetails.to.city}</Text>
+            </View>
+          </View>
           <Text style={styles.status}>{flightDetails.status}</Text>
         </View>
 
@@ -56,7 +105,7 @@ const FlightDetailScreen = ({ route }: FlightDetailScreenProps) => {
           <View style={styles.infoCard}>
             <Text style={styles.infoRow}>
               <Text style={styles.infoLabel}>Самолет: </Text>
-              {flightDetails.aircraft}
+              {flightDetails.aircraft.model}
             </Text>
             <Text style={styles.infoRow}>
               <Text style={styles.infoLabel}>Выход: </Text>
@@ -73,6 +122,24 @@ const FlightDetailScreen = ({ route }: FlightDetailScreenProps) => {
               <Text style={styles.crewRole}>{member.role}</Text>
             </View>
           ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Погода</Text>
+          <View style={styles.weatherContainer}>
+            <View style={styles.weatherCard}>
+              <Text style={styles.weatherTitle}>Вылет</Text>
+              <Text style={styles.weatherTemp}>{flightDetails.weather.departure.temp}</Text>
+              <Text style={styles.weatherConditions}>{flightDetails.weather.departure.conditions}</Text>
+              <Text style={styles.weatherWind}>Ветер: {flightDetails.weather.departure.wind}</Text>
+            </View>
+            <View style={styles.weatherCard}>
+              <Text style={styles.weatherTitle}>Прилет</Text>
+              <Text style={styles.weatherTemp}>{flightDetails.weather.arrival.temp}</Text>
+              <Text style={styles.weatherConditions}>{flightDetails.weather.arrival.conditions}</Text>
+              <Text style={styles.weatherWind}>Ветер: {flightDetails.weather.arrival.wind}</Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -152,6 +219,65 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   crewRole: {
+    fontSize: 14,
+    color: '#666',
+  },
+  routeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  airportInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  airportCode: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  airportCity: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  routeLine: {
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  routeArrow: {
+    fontSize: 18,
+    color: '#007AFF',
+  },
+  weatherContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+  },
+  weatherCard: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+  },
+  weatherTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: 4,
+  },
+  weatherTemp: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  weatherConditions: {
+    fontSize: 16,
+    color: '#666',
+  },
+  weatherWind: {
     fontSize: 14,
     color: '#666',
   },
